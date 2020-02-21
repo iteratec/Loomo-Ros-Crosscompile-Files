@@ -11,6 +11,10 @@ This project is a prototype developed by iteratec's students and interns.
 It is work in progress in many areas and does not reflect the usual code quality standards
 applied by iteratec.
 
+## License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+
 ## How to
 
 For a detailed how-to please refer to: http://wiki.ros.org/android_ndk

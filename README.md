@@ -1,21 +1,10 @@
-These scripts will (hopefully) help you build static libraries
-for tf2 for android and setup a sample application.
+## Loomo-Ros-Crosscompile-Files
 
-You will need android SDK installed and the 'android' program
-location in the $PATH.
+In order to not rely on a seperate computer besides Loomo, we need to crosscompile certain ROS Packages for them to work with java.
+To achieve this we use the [ROS Android NDK](http://wiki.ros.org/android_ndk). 
+For each ROS-Node there is a .cpp file in [loomo_native_app](https://github.com/iteratec/Loomo-Ros-Crosscompile-Files/tree/master/files/loomo_native_app/jni/src). They map the methods from the java-nodes of the Loomo-App to their C++ equivalent. Each node needs to have their own Library.
 
-
-## Disclaimer
-
-This project is a prototype developed by iteratec's students and interns.
-It is work in progress in many areas and does not reflect the usual code quality standards
-applied by iteratec.
-
-## License
-
-This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
-
-## How to
+### How to
 
 For a detailed how-to please refer to: http://wiki.ros.org/android_ndk
 
@@ -34,3 +23,13 @@ Once it is finshed all needed librarys for the Loomo-App can be found at
     /output/loomo_native_app/libs/armeabi-v7a/
     
 These .so-Files now need to be copied to the '/jnilibs/armeabi-v7a/' folder of the Loomo-App.
+
+### Disclaimer
+
+This project is a prototype developed by iteratec's students and interns.
+It is work in progress in many areas and does not reflect the usual code quality standards
+applied by iteratec.
+
+### License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details

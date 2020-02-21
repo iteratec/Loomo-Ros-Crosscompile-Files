@@ -1,0 +1,31 @@
+--- libs/apache-log4cxx-0.10.0/src/examples/cpp/console.cpp	2015-01-09 00:45:11.380992240 -0300
++++ libs/apache-log4cxx-0.10.0/src/examples/cpp/console.cpp	2015-01-09 00:49:43.140979871 -0300
+@@ -22,6 +22,8 @@
+ #include <log4cxx/logmanager.h>
+ #include <iostream>
+ #include <locale.h>
++#include <cstring>
++#include <cstdio>
+ 
+ using namespace log4cxx;
+ using namespace log4cxx::helpers;
+--- libs/apache-log4cxx-0.10.0/src/main/cpp/socketoutputstream.cpp	2015-01-09 00:42:28.728999643 -0300
++++ libs/apache-log4cxx-0.10.0/src/main/cpp/socketoutputstream.cpp	2015-01-09 00:42:43.916998952 -0300
+@@ -19,6 +19,7 @@
+ #include <log4cxx/helpers/socketoutputstream.h>
+ #include <log4cxx/helpers/socket.h>
+ #include <log4cxx/helpers/bytebuffer.h>
++#include <cstring>
+ 
+ using namespace log4cxx;
+ using namespace log4cxx::helpers;
+--- libs/apache-log4cxx-0.10.0/src/main/cpp/inputstreamreader.cpp	2015-01-09 00:39:04.933008919 -0300
++++ libs/apache-log4cxx-0.10.0/src/main/cpp/inputstreamreader.cpp	2015-01-09 00:39:51.201006813 -0300
+@@ -20,6 +20,7 @@
+ #include <log4cxx/helpers/exception.h>
+ #include <log4cxx/helpers/pool.h>
+ #include <log4cxx/helpers/bytebuffer.h>
++#include <cstring>
+ 
+ using namespace log4cxx;
+ using namespace log4cxx::helpers;

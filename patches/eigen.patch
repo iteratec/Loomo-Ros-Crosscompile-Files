@@ -1,0 +1,14 @@
+--- libs/eigen/Eigen/src/SparseLU/SparseLU.h	2015-01-09 15:26:07.616501245 -0300
++++ libs/eigen/Eigen/src/SparseLU/SparseLU.h	2015-01-09 15:26:23.896500470 -0300
+@@ -219,9 +219,9 @@
+     }
+ 
+     template<typename Rhs, typename Dest>
+-    bool _solve(const MatrixBase<Rhs> &B, MatrixBase<Dest> &_X) const
++    bool _solve(const MatrixBase<Rhs> &B, MatrixBase<Dest> &_G) const
+     {
+-      Dest& X(_X.derived());
++      Dest& X(_G.derived());
+       eigen_assert(m_factorizationIsOk && "The matrix should be factorized first");
+       EIGEN_STATIC_ASSERT((Dest::Flags&RowMajorBit)==0,
+                         THIS_METHOD_IS_ONLY_FOR_COLUMN_MAJOR_MATRICES);

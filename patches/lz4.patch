@@ -1,0 +1,13 @@
+--- libs/lz4-r124/cmake_unofficial/CMakeLists.txt	2014-10-31 16:38:11.346334129 -0300
++++ libs/lz4-r124/cmake_unofficial/CMakeLists.txt	2014-10-31 19:04:39.786517080 -0300
+@@ -14,8 +14,8 @@
+     MESSAGE( STATUS "64 bit architecture detected size of void * is " ${SIZEOF_VOID_P})
+ ENDIF()
+ 
+-option(BUILD_TOOLS "Build the command line tools" ON)
+-option(BUILD_LIBS  "Build the libraries in addition to the tools" OFF)
++option(BUILD_TOOLS "Build the command line tools" OFF)
++option(BUILD_LIBS  "Build the libraries in addition to the tools" ON)
+ 
+ if(UNIX AND BUILD_LIBS)
+     if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")

@@ -1,0 +1,58 @@
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE    := move_base_jni
+LOCAL_SRC_FILES := src/move_base_jni.cpp
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
+LOCAL_LDLIBS := -landroid
+LOCAL_STATIC_LIBRARIES := android_native_app_glue roscpp_android_ndk
+LOCAL_WHOLE_STATIC_LIBRARIES := liblayers libdwa_local_planner libclear_costmap_recovery librotate_recovery libglobal_planner libnavfn libtrajectory_planner_ros libcarrot_planner libmove_slow_and_clear 
+
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := amcl_jni
+LOCAL_SRC_FILES := src/amcl.cpp
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
+LOCAL_LDLIBS := -landroid
+LOCAL_STATIC_LIBRARIES := android_native_app_glue roscpp_android_ndk
+
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := depthimage_to_laserscan_jni 
+LOCAL_SRC_FILES := src/depthimage_to_laserscan.cpp # src/DepthImageToLaserScan.cpp  src/DepthImageToLaserScanNodelet.cpp 
+# src/DepthImageToLaserScanROS.cpp is now in -> DepthImageToLaserScan.cpp
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
+$(warning $(LOCAL_C_INCLUDES))
+LOCAL_LDLIBS := -landroid -lz -llog
+LOCAL_STATIC_LIBRARIES := android_native_app_glue roscpp_android_ndk gnustl_static
+LOCAL_WHOLE_STATIC_LIBRARIES := libimage_transport_plugins libcompressed_image_transport
+
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := laser_filter_jni 
+LOCAL_SRC_FILES := src/scan_to_scan_filter_chain.cpp # src/laser_scan_filters.cpp
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
+LOCAL_LDLIBS := -landroid 
+LOCAL_STATIC_LIBRARIES := android_native_app_glue roscpp_android_ndk gnustl_static
+LOCAL_WHOLE_STATIC_LIBRARIES := liblaser_scan_filters
+
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := laser_amcl_jni 
+LOCAL_SRC_FILES := src/scan_to_scan_filter_chain_amcl.cpp # src/laser_scan_filters.cpp
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
+LOCAL_LDLIBS := -landroid 
+LOCAL_STATIC_LIBRARIES := android_native_app_glue roscpp_android_ndk gnustl_static
+LOCAL_WHOLE_STATIC_LIBRARIES := liblaser_scan_filters
+
+include $(BUILD_SHARED_LIBRARY)
+
+
+$(call import-module,android/native_app_glue)
+$(call import-module,roscpp_android_ndk)
+

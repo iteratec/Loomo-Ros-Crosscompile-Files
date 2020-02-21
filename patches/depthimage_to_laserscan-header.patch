@@ -1,0 +1,24 @@
+--- catkin_ws/src/depthimage_to_laserscan/include/depthimage_to_laserscan/DepthImageToLaserScanROS.h   2017-02-07 16:55:38.565216608 +0100
++++ catkin_ws/src/depthimage_to_laserscan/include/depthimage_to_laserscan/DepthImageToLaserScanROS.h   2017-02-07 16:54:17.525217632 +0100
+@@ -43,9 +43,13 @@
+ #include <depthimage_to_laserscan/DepthConfig.h>
+ 
+ #include <depthimage_to_laserscan/DepthImageToLaserScan.h>
++// For logging
++#include <android/log.h>
+ 
+ namespace depthimage_to_laserscan
+-{ 
++{
++  void log(const char *msg, ...);
++  
+   class DepthImageToLaserScanROS
+   {
+   public:
+@@ -107,4 +111,4 @@ namespace depthimage_to_laserscan
+   
+ }; // depthimage_to_laserscan
+ 
+-#endif
+\ No newline at end of file
++#endif

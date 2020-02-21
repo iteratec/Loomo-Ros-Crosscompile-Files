@@ -1,0 +1,55 @@
+--- catkin_ws/src/depthimage_to_laserscan/src/DepthImageToLaserScanROS.cpp   2017-02-07 16:55:38.565216608 +0100
++++ catkin_ws/src/depthimage_to_laserscan/src/DepthImageToLaserScanROS.cpp   2017-02-07 16:54:17.525217632 +0100
+@@ -34,8 +34,16 @@
+ #include <depthimage_to_laserscan/DepthImageToLaserScanROS.h>
+ 
+ using namespace depthimage_to_laserscan;
+-  
++
++void log(const char *msg, ...) {
++    va_list args;
++    va_start(args, msg);
++    __android_log_vprint(ANDROID_LOG_INFO, "[LOG]", msg, args);
++    va_end(args);
++}
++
+ DepthImageToLaserScanROS::DepthImageToLaserScanROS(ros::NodeHandle& n, ros::NodeHandle& pnh):pnh_(pnh), it_(n), srv_(pnh) {
++  log("constructor called");
+   boost::mutex::scoped_lock lock(connect_mutex_);
+   
+   // Dynamic Reconfigure
+@@ -55,6 +63,7 @@ DepthImageToLaserScanROS::~DepthImageToLaserScanROS(){
+ 
+ void DepthImageToLaserScanROS::depthCb(const sensor_msgs::ImageConstPtr& depth_msg,
+ 	      const sensor_msgs::CameraInfoConstPtr& info_msg){
++  log("depthCb called");
+   try
+   {
+     sensor_msgs::LaserScanPtr scan_msg = dtl_.convert_msg(depth_msg, info_msg);
+@@ -67,8 +76,10 @@ void DepthImageToLaserScanROS::depthCb(const sensor_msgs::ImageConstPtr& depth_m
+ }
+ 
+ void DepthImageToLaserScanROS::connectCb(const ros::SingleSubscriberPublisher& pub) {
++  log("connectCb called");
+   boost::mutex::scoped_lock lock(connect_mutex_);
+   if (!sub_ && pub_.getNumSubscribers() > 0) {
++    log("subscription to image topic called");
+     ROS_DEBUG("Connecting to depth topic.");
+     image_transport::TransportHints hints("raw", ros::TransportHints(), pnh_);
+     sub_ = it_.subscribeCamera("image", 10, &DepthImageToLaserScanROS::depthCb, this, hints);
+@@ -76,6 +87,7 @@ void DepthImageToLaserScanROS::connectCb(const ros::SingleSubscriberPublisher& p
+ }
+ 
+ void DepthImageToLaserScanROS::disconnectCb(const ros::SingleSubscriberPublisher& pub) {
++  log("disconnectCb called");
+   boost::mutex::scoped_lock lock(connect_mutex_);
+   if (pub_.getNumSubscribers() == 0) {
+     ROS_DEBUG("Unsubscribing from depth topic.");
+@@ -84,6 +96,7 @@ void DepthImageToLaserScanROS::disconnectCb(const ros::SingleSubscriberPublisher
+ }
+ 
+ void DepthImageToLaserScanROS::reconfigureCb(depthimage_to_laserscan::DepthConfig& config, uint32_t level){
++    log("reconfigureCb called");
+     dtl_.set_scan_time(config.scan_time);
+     dtl_.set_range_limits(config.range_min, config.range_max);
+     dtl_.set_scan_height(config.scan_height);

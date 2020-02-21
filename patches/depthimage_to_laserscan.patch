@@ -1,0 +1,19 @@
+--- catkin_ws/src/depthimage_to_laserscan/src/DepthImageToLaserScan.cpp   2017-02-07 16:55:38.565216608 +0100
++++ catkin_ws/src/depthimage_to_laserscan/src/DepthImageToLaserScan.cpp   2017-02-07 16:54:17.525217632 +0100
+@@ -33,7 +33,16 @@
+ 
+ #include <depthimage_to_laserscan/DepthImageToLaserScan.h>
+ 
++using std::string;
++
+ using namespace depthimage_to_laserscan;
++
++void log(const char *msg, ...) {
++    va_list args;
++    va_start(args, msg);
++    __android_log_vprint(ANDROID_LOG_INFO, "[LOG]", msg, args);
++    va_end(args);
++}
+   
+ DepthImageToLaserScan::DepthImageToLaserScan(){
+ }

@@ -1,0 +1,5 @@
+output
+*.pyc
+old_ndk.rosinstall
+files/rospkg/
+files/pluginlib_helper/pluginlib_helper.cpp
